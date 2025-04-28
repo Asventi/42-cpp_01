@@ -14,29 +14,28 @@
 
 #include <iostream>
 
-Zombie::Zombie(): _name("Zombie") {};
+Zombie::Zombie(): _name("Zombie") {}
 
-Zombie::Zombie(std::string &name): _name(name) {};
+Zombie::Zombie(std::string &name): _name(name) {}
 
 Zombie::~Zombie()
 {
-	std::cout << _name << ": died." << std::endl;
-};
+	std::cout << _name << ": died.\n";
+}
 
-Zombie::Zombie(const Zombie &cpy)
-{
-	_name = cpy._name;
-};
+Zombie::Zombie(const Zombie &cpy) : _name(cpy._name) {}
 
 Zombie &Zombie::operator=(const Zombie &e)
 {
 	if (&e != this)
+	{
 		_name = e._name;
-	return (*this);
-};
+	}
+	return *this;
+}
 
-void Zombie::announce()
+void Zombie::announce() const
 {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << ": BraiiiiiiinnnzzzZ...\n";
 }
 

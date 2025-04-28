@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,24 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-# include <string>
+#include <iostream>
 
-class Zombie
+void Zombie::set_name(const std::string &name)
 {
-    std::string _name;
-public:
-    Zombie();
-    explicit Zombie(std::string &name);
-    ~Zombie();
-    Zombie(const Zombie& cpy);
-    Zombie& operator=(const Zombie& e);
-    void    announce() const;
-};
+	_name = name;
+}
 
-Zombie  *newZombie(std::string name);
-void    randomChump(std::string name);
+void Zombie::announce() const
+{
+	std::cout << _name << ": BraiiiiiiinnnzzzZ...\n";
+}
 
-#endif
+Zombie::Zombie(): _name("Zombie") {}
+
+Zombie::Zombie(std::string &name): _name(name) {}
+
+Zombie::~Zombie()
+{
+	std::cout << _name << ": died.\n";
+}
+
+Zombie::Zombie(const Zombie &cpy) : _name(cpy._name) {}
+
+Zombie &Zombie::operator=(const Zombie &e)
+{
+	if (&e != this)
+	{
+		_name = e._name;
+	}
+	return *this;
+}
